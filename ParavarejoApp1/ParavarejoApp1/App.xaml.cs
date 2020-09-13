@@ -5,6 +5,8 @@ using ParavarejoApp1.Services;
 using ParavarejoApp1.Views;
 using System.Globalization;
 
+[assembly: ExportFont("Lobster-Regular.ttf", Alias = "Lobster")]
+
 namespace ParavarejoApp1
 {
     public partial class App : Application
