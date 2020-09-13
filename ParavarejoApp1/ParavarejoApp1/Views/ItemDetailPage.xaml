@@ -7,7 +7,7 @@
     <StackLayout Spacing="20" Padding="15">
         <Label Text="{Binding Text}" FontSize="Small"/>
         <Label Text="{Binding Description}" FontSize="Small" />
-        <Editor Text="{Binding Value, Mode=TwoWay}" FontSize="Default" IsReadOnly="{Binding IsReadOnly}" Keyboard="Numeric"  />
+        <Editor Text="{Binding Value, Mode=TwoWay}" FontSize="Default" IsReadOnly="{Binding IsReadOnly}" />
         <StackLayout Orientation="Horizontal">
             <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
             <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>

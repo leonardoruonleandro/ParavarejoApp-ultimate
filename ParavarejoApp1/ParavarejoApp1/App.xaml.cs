@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ParavarejoApp1.Services;
 using ParavarejoApp1.Views;
+using System.Globalization;
 
 namespace ParavarejoApp1
 {
@@ -19,6 +20,7 @@ namespace ParavarejoApp1
 
         protected override void OnStart()
         {
+            //CultureInfo.CurrentCulture = new CultureInfo("pt-BR");
         }
 
         protected override void OnSleep()
