@@ -14,12 +14,10 @@ namespace ParavarejoApp1.ViewModels
 
         private Item _item;
         private string _itemId;
-        private string _id;
         private string _text;
         private string _description;
         private double _value;
         private double _calculatedValue;
-
 
         public ItemDetailViewModel()
         {
@@ -28,19 +26,18 @@ namespace ParavarejoApp1.ViewModels
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
         }
-
-        public string Id { get { return _item.Id; } set { _item.Id = value; OnPropertyChanged(); } }
+        public string Id { get; set; }
 
         public string Text
         {
-            get => _item.Text;
-            set => SetProperty(ref _item.Text, value);
+            get => _text;
+            set => SetProperty(ref _text, value);
         }
 
         public string Description
         {
-            get => description;
-            set => SetProperty(ref description, value);
+            get => _description;
+            set => SetProperty(ref _description, value);
         }
 
         public double Value
@@ -48,26 +45,47 @@ namespace ParavarejoApp1.ViewModels
             get => _value;
             set
             {
-                SetProperty(ref _value, value, "Value");
+                SetProperty(ref _value, value);
             }
         }
 
         public double CalculatedValue
         {
-            get => calculatedValue;
-            set => SetProperty(ref calculatedValue, value);
+            get => _calculatedValue;
+            set => SetProperty(ref _calculatedValue, value);
         }
 
         public string ItemId
         {
             get
             {
-                return itemId;
+                return _itemId;
             }
             set
             {
-                itemId = value;
+                _itemId = value;
                 LoadItemId(value);
+            }
+        }
+
+        public bool IsReadOnly
+        {
+            get
+            {
+                bool isReadOnly = false;
+                if (_item != null)
+                {
+                    switch (_item.Variavel)
+                    {
+                        case LucroRealVariavel.PreçoDeCusto:
+                        case LucroRealVariavel.LucroBruto:
+                            isReadOnly = true;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                return isReadOnly;
             }
         }
 
@@ -79,11 +97,18 @@ namespace ParavarejoApp1.ViewModels
                 Id = item.Id;
                 Text = item.Text;
                 Description = item.Description;
+                Value = item.Value;
+                CalculatedValue = item.CalculatedValue;
+
+                _item = item;
             }
             catch (Exception)
             {
                 Debug.WriteLine("Failed to Load Item");
             }
+
+            UpdateView();
+
         }
 
         public Command SaveCommand { get; }
@@ -97,19 +122,13 @@ namespace ParavarejoApp1.ViewModels
 
         private async void OnSave()
         {
-            Item newItem = new Item()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Description = Description,
-                Value = Value,
-                
-            };
-            await DataStore.UpdateItemAsync(newItem);
+            _item.Value = Value;
 
-            var itemss = await DataStore.GetItemsAsync();
+            await DataStore.UpdateItemAsync(_item);
 
-            //ParavarejoApp1.Services.ParavarejoServices.GetInstance().LucroReal.Calculate(itemss.ToList());
+            var items = await DataStore.GetItemsAsync();
+
+            Services.ParavarejoServices.GetInstance().LucroReal.Calculate(items.ToList());
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
@@ -117,8 +136,13 @@ namespace ParavarejoApp1.ViewModels
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text)
-                && !String.IsNullOrWhiteSpace(description);
+            return !String.IsNullOrWhiteSpace(_text)
+                && !String.IsNullOrWhiteSpace(_description);
+        }
+
+        private void UpdateView()
+        {
+            OnPropertyChanged(nameof(IsReadOnly));
         }
 
     }

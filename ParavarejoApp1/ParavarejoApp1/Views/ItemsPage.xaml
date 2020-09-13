@@ -25,10 +25,30 @@
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 
                             FontSize="16" />
-                        <Label Text="{Binding Description}" 
+                        <StackLayout Orientation="Horizontal" IsVisible="{Binding HasValue, Mode=OneWay}">
+                            <Label Text="{Binding Description}" 
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
                             FontSize="13" />
+                            <Label Text="{Binding Value, StringFormat='{0:F2}'}}" 
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" IsVisible="{Binding HasCalculatedValue, Mode=OneWay}">
+                            <Label Text="{Binding DescriptionCalculatedValue}" 
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+                            <Label Text="{Binding CalculatedValue, StringFormat='{0:F2}'}" 
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13"
+                               />
+                        </StackLayout>
+
+
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"

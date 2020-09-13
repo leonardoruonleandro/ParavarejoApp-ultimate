@@ -5,14 +5,9 @@
              Title="{Binding Title}">
 
     <StackLayout Spacing="20" Padding="15">
-        <Label Text="Item:" FontSize="Medium" />
         <Label Text="{Binding Text}" FontSize="Small"/>
-        <Label Text="Descrição:" FontSize="Small" />
-        <Label Text="{Binding Description}" FontSize="Small"/>
-        <Label Text="Valor:" FontSize="Small" />
-        <Editor Text="{Binding Value}" FontSize="Default" />
-        <Label Text="Calculado:" FontSize="Small" />
-        <Label Text="{Binding CalculatedValue}" FontSize="Default"/>
+        <Label Text="{Binding Description}" FontSize="Small" />
+        <Editor Text="{Binding Value, Mode=TwoWay}" FontSize="Default" IsReadOnly="{Binding IsReadOnly}" Keyboard="Numeric"  />
         <StackLayout Orientation="Horizontal">
             <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
             <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>

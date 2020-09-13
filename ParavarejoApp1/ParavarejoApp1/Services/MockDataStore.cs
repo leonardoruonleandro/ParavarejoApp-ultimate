@@ -14,15 +14,15 @@ namespace ParavarejoApp1.Services
         {
             items = new List<Item>()
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Preço de compra", Description="R$" },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Crédito ICMS (-)", Description="%" },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Crédito PIS Cofins (-)", Description="%" },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Acréscimo IPI (+)", Description="%" },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Preço de custo", Description="R$" },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Preço de venda", Description="R$" },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Débito ICMS (-)", Description="%" },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Débito PIS Cofins (-)", Description="%" },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Lucro bruto", Description="R$" }
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Preço de compra", Description="R$", Variavel = LucroRealVariavel.PreçoDeCompra },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Crédito ICMS (-)", Description="%", DescriptionCalculatedValue = "R$", Variavel = LucroRealVariavel.CreditoICMS },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Crédito PIS Cofins (-)", Description="%", DescriptionCalculatedValue = "R$", Variavel = LucroRealVariavel.CreditoPISCofins },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Acréscimo IPI (+)", Description="%", DescriptionCalculatedValue = "R$"   , Variavel = LucroRealVariavel.AcrescimoIPI },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Preço de custo", DescriptionCalculatedValue="R$", Variavel = LucroRealVariavel.PreçoDeCusto },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Preço de venda", Description="R$", Variavel = LucroRealVariavel.PreçoDeVenda },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Débito ICMS (-)", Description="%", DescriptionCalculatedValue = "R$", Variavel = LucroRealVariavel.DebitoICMS },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Débito PIS Cofins (-)", Description="%", DescriptionCalculatedValue = "R$", Variavel = LucroRealVariavel.DebitoPISCofins },
+                new Item { Id = Guid.NewGuid().ToString(), Text = "Lucro bruto", Description="%", DescriptionCalculatedValue = "R$", Variavel = LucroRealVariavel.LucroBruto }
 
             };
 
@@ -38,8 +38,12 @@ namespace ParavarejoApp1.Services
         public async Task<bool> UpdateItemAsync(Item item)
         {
             var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
+
+            int index = items.IndexOf(oldItem);
+
             items.Remove(oldItem);
-            items.Add(item);
+
+            items.Insert(index, item);
 
             return await Task.FromResult(true);
         }
