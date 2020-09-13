@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ParavarejoApp1.Views.ItemDetailPage"
+             Title="{Binding Title}">
+
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="Item:" FontSize="Medium" />
+        <Label Text="{Binding Text}" FontSize="Small"/>
+        <Label Text="Descrição:" FontSize="Small" />
+        <Label Text="{Binding Description}" FontSize="Small"/>
+        <Label Text="Valor:" FontSize="Small" />
+        <Editor Text="{Binding Value}" FontSize="Default" />
+        <Label Text="Calculado:" FontSize="Small" />
+        <Label Text="{Binding CalculatedValue}" FontSize="Default"/>
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+        </StackLayout>
+    </StackLayout>
+
+
+</ContentPage>
