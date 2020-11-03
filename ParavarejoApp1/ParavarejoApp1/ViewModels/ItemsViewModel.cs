@@ -7,6 +7,7 @@ using Xamarin.Forms;
 
 using ParavarejoApp1.Models;
 using ParavarejoApp1.Views;
+using System.Linq;
 
 namespace ParavarejoApp1.ViewModels
 {
@@ -20,25 +21,102 @@ namespace ParavarejoApp1.ViewModels
         public Command<Item> ItemTapped { get; }
 
         public Item PreçoDeCompra { get; set; }
+
+        public double PreçoDeCompraValue
+        {
+            get { return PreçoDeCompra.Value; }
+            set
+            {
+                PreçoDeCompra.Value = value;
+                OnPropertyChanged(nameof(PreçoDeCompraValue));
+                //Services.ParavarejoServices.GetInstance().LucroReal.Calculate(Items.ToList());
+            }
+        }
         public Item CreditoICMS { get; set; }
+
+        public double CreditoICMSValue
+        {
+            get { return CreditoICMS.Value; }
+            set
+            {
+                CreditoICMS.Value = value;
+                OnPropertyChanged(nameof(CreditoICMSValue));
+                //Services.ParavarejoServices.GetInstance().LucroReal.Calculate(Items.ToList());
+            }
+        }
 
         public Item CreditoPISCofins { get; set; }
 
+        public double CreditoPISCofinsValue
+        {
+            get { return CreditoPISCofins.Value; }
+            set
+            {
+                CreditoPISCofins.Value = value;
+                OnPropertyChanged(nameof(CreditoPISCofinsValue));
+                //Services.ParavarejoServices.GetInstance().LucroReal.Calculate(Items.ToList());
+            }
+        }
+
         public Item AcrescimoIPI { get; set; }
+
+        public double AcrescimoIPIValue
+        {
+            get { return AcrescimoIPI.Value; }
+            set
+            {
+                AcrescimoIPI.Value = value;
+                OnPropertyChanged(nameof(AcrescimoIPIValue));
+                //Services.ParavarejoServices.GetInstance().LucroReal.Calculate(Items.ToList());
+            }
+        }
 
         public Item PreçoDeCusto { get; set; }
 
         public Item PreçoDeVenda { get; set; }
 
+        public double PreçoDeVendaValue
+        {
+            get { return PreçoDeVenda.Value; }
+            set
+            {
+                PreçoDeVenda.Value = value;
+                OnPropertyChanged(nameof(PreçoDeVendaValue));
+                //Services.ParavarejoServices.GetInstance().LucroReal.Calculate(Items.ToList());
+            }
+        }
+
         public Item DebitoICMS { get; set; }
 
+        public double DebitoICMSValue
+        {
+            get { return DebitoICMS.Value; }
+            set
+            {
+                DebitoICMS.Value = value;
+                OnPropertyChanged(nameof(DebitoICMSValue));
+                //Services.ParavarejoServices.GetInstance().LucroReal.Calculate(Items.ToList());
+            }
+        }
+
         public Item DebitoPISCofins { get; set; }
+
+        public double DebitoPISCofinsValue
+        {
+            get { return DebitoPISCofins.Value; }
+            set
+            {
+                DebitoPISCofins.Value = value;
+                OnPropertyChanged(nameof(DebitoPISCofinsValue));
+                //Services.ParavarejoServices.GetInstance().LucroReal.Calculate(Items.ToList());
+            }
+        }
 
         public Item LucroBruto { get; set; }
 
         public ItemsViewModel()
         {
-            Title = "Browse";
+            Title = "Cálculo do Lucro Bruto";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             LoadItems();

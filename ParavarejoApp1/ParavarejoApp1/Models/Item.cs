@@ -23,7 +23,16 @@ namespace ParavarejoApp1.Models
             }
         }
 
-        public double CalculatedValue { get; set; }
+        private double _calculatedValue;
+        public double CalculatedValue
+        {
+            get { return _calculatedValue; }
+            set
+            {
+                _calculatedValue = value;
+                OnPropertyChanged(nameof(CalculatedValue));
+            }
+        }
 
         public LucroRealVariavel Variavel { get; set; }
 
