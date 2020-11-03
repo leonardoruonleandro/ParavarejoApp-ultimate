@@ -2,12 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ParavarejoApp1.Views.ItemDetailPage"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             xmlns:converterPack="clr-namespace:ParavarejoApp1.Views.Resources">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converterPack:CurrencyConverter x:Key="CurrencyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <StackLayout Spacing="20" Padding="15">
         <Label Text="{Binding Text}" FontSize="Small"/>
         <Label Text="{Binding Description}" FontSize="Small" />
-        <Editor Text="{Binding Value, Mode=TwoWay}" FontSize="Default" IsReadOnly="{Binding IsReadOnly}" Keyboard="Numeric" />
+        <Editor Text="{Binding Value, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}" 
+                Keyboard="Numeric" 
+                FontSize="Default" 
+                IsReadOnly="{Binding IsReadOnly}" />
+
         <StackLayout Orientation="Horizontal">
             <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
             <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>

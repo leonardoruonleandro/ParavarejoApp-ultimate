@@ -10,7 +10,7 @@ using ParavarejoApp1.Services;
 
 namespace ParavarejoApp1.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : PropertyChange
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
 
@@ -41,16 +41,18 @@ namespace ParavarejoApp1.ViewModels
             return true;
         }
 
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            var changed = PropertyChanged;
-            if (changed == null)
-                return;
+        //#region INotifyPropertyChanged
 
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
+        //public event PropertyChangedEventHandler PropertyChanged;
+        //protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        //{
+        //    var changed = PropertyChanged;
+        //    if (changed == null)
+        //        return;
+
+        //    changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
+
+        //#endregion
     }
 }

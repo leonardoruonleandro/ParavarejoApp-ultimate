@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ParavarejoApp1.ViewModels;
+using System;
+using System.ComponentModel;
 
 namespace ParavarejoApp1.Models
 {
-    public class Item
+    public class Item : PropertyChange
     {
         public string Id { get; set; }
         public string Text { get; set; }
@@ -10,7 +12,16 @@ namespace ParavarejoApp1.Models
 
         public string DescriptionCalculatedValue { get; set; }
 
-        public double Value { get; set; }
+        private double _value;
+        public double Value
+        {
+            get { return _value; }
+            set
+            {
+                _value = value;
+                OnPropertyChanged(nameof(Value));
+            }
+        }
 
         public double CalculatedValue { get; set; }
 
@@ -19,6 +30,47 @@ namespace ParavarejoApp1.Models
         public bool HasValue { get { return Value != 0; } }
 
         public bool HasCalculatedValue { get { return CalculatedValue != 0; } }
+
+        public bool IsReadOnly
+        {
+            get
+            {
+                bool isReadOnly = false;
+
+                switch (this.Variavel)
+                {
+                    case LucroRealVariavel.PreçoDeCusto:
+                    case LucroRealVariavel.LucroBruto:
+                        isReadOnly = true;
+                        break;
+                    default:
+                        break;
+                }
+
+                return isReadOnly;
+            }
+        }
+
+        public bool IsValueEditable
+        {
+            get
+            {
+                bool isEditable = true;
+
+                switch (this.Variavel)
+                {
+                    case LucroRealVariavel.PreçoDeCusto:
+                    case LucroRealVariavel.LucroBruto:
+                        isEditable = false;
+                        break;
+                    default:
+                        break;
+                }
+
+                return isEditable;
+            }
+        }
+
     }
 
 

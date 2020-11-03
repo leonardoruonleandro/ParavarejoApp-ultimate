@@ -16,7 +16,7 @@ namespace ParavarejoApp1.ViewModels
         private string _itemId;
         private string _text;
         private string _description;
-        private string _value;
+        private double _value;
         private double _calculatedValue;
 
         public ItemDetailViewModel()
@@ -40,7 +40,7 @@ namespace ParavarejoApp1.ViewModels
             set => SetProperty(ref _description, value);
         }
 
-        public string Value
+        public double Value
         {
             get => _value;
             set
@@ -97,7 +97,7 @@ namespace ParavarejoApp1.ViewModels
                 Id = item.Id;
                 Text = item.Text;
                 Description = item.Description;
-                Value = Convert.ToString(item.Value);
+                Value = item.Value;
                 CalculatedValue = item.CalculatedValue;
 
                 _item = item;
@@ -122,7 +122,7 @@ namespace ParavarejoApp1.ViewModels
 
         private async void OnSave()
         {
-            _item.Value = Convert.ToDouble(Value);
+            _item.Value = Value;
 
             await DataStore.UpdateItemAsync(_item);
 

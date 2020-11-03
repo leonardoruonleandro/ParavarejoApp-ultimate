@@ -5,7 +5,15 @@
              Title="{Binding Title}"
              xmlns:local="clr-namespace:ParavarejoApp1.ViewModels"  
              xmlns:model="clr-namespace:ParavarejoApp1.Models"  
-             x:Name="BrowseItemsPage">
+             x:Name="BrowseItemsPage"
+             xmlns:converterPack="clr-namespace:ParavarejoApp1.Views.Resources"
+             >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converterPack:CurrencyConverter x:Key="CurrencyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
@@ -15,50 +23,163 @@
       https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
     -->
     <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <CollectionView x:Name="ItemsListView"
-                ItemsSource="{Binding Items}"
-                SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="10" x:DataType="model:Item">
-                        <Label Text="{Binding Text}" 
-                            LineBreakMode="NoWrap" 
-                            Style="{DynamicResource ListItemTextStyle}" 
-                            FontSize="16" />
-                        <StackLayout Orientation="Horizontal" IsVisible="{Binding HasValue, Mode=OneWay}">
-                            <Label Text="{Binding Description}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
-                            <Label Text="{Binding Value, StringFormat='{0:F2}'}}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
-                        </StackLayout>
-
-                        <StackLayout Orientation="Horizontal" IsVisible="{Binding HasCalculatedValue, Mode=OneWay}">
-                            <Label Text="{Binding DescriptionCalculatedValue}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13" />
-                            <Label Text="{Binding CalculatedValue, StringFormat='{0:F2}'}" 
-                            LineBreakMode="NoWrap"
-                            Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13"
-                               />
-                        </StackLayout>
-
-
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer 
-                                NumberOfTapsRequired="1"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
-                                CommandParameter="{Binding .}">
-                            </TapGestureRecognizer>
-                        </StackLayout.GestureRecognizers>
+        <StackLayout Orientation="Vertical">
+            <ScrollView>
+                <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="{Binding PreçoDeCompra.Text, FallbackValue='Preço de compra'}"
+                       FontSize="Small"
+                       Margin="10,10,0,0" />
+                        <Label Text="{Binding PreçoDeCompra.Description, FallbackValue='R$'}" 
+                       FontSize="Small"
+                       Margin="10,10,0,0"/>
                     </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                    <Editor Text="{Binding PreçoDeCompra.Value, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}" 
+                        FontSize="Small" 
+                        Keyboard="Numeric"
+                        />
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="{Binding CreditoICMS.Text}"
+                       FontSize="Small"
+                       Margin="10,0,0,0" />
+                        <Label Text="{Binding CreditoICMS.DescriptionCalculatedValue}"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                        <Label Text="{Binding CreditoICMS.CalculatedValue}"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                        <Label Text="{Binding CreditoICMS.Description}"
+                       Margin="10,0,0,0"/>
+                    </StackLayout>
+                    <Editor Text="{Binding CreditoICMS.Value, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}" 
+                        FontSize="Small" 
+                        Keyboard="Numeric"
+                        />
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="{Binding CreditoPISCofins.Text}"
+                       FontSize="Small"
+                       Margin="10,0,0,0" />
+                        <Label Text="{Binding CreditoPISCofins.DescriptionCalculatedValue}"
+                       FontSize="Small"
+                       Margin="10,0,0,0"/>
+                        <Label Text="{Binding CreditoPISCofins.CalculatedValue}"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                        <Label Text="{Binding CreditoPISCofins.Description}"
+                       Margin="10,0,0,0"/>
+                    </StackLayout>
+                    <Editor Text="{Binding CreditoPISCofins.Value, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}" 
+                        FontSize="Small" 
+                        Keyboard="Numeric"
+                        />
+
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="{Binding AcrescimoIPI.Text}"
+                       FontSize="Small"
+                       Margin="10,0,0,0" />
+                        <Label Text="{Binding AcrescimoIPI.DescriptionCalculatedValue}"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                        <Label Text="{Binding AcrescimoIPI.CalculatedValue}"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                        <Label Text="{Binding AcrescimoIPI.Description}"
+                       Margin="10,0,0,0"/>
+                    </StackLayout>
+                    <Editor Text="{Binding AcrescimoIPI.Value, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}" 
+                        FontSize="Small" 
+                        Keyboard="Numeric"
+                        />
+
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="{Binding PreçoDeCusto.Text}"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0" />
+                        <Label Text="{Binding PreçoDeCusto.DescriptionCalculatedValue}"
+                           FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                        <Label Text="{Binding PreçoDeCusto.CalculatedValue}"
+                           FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="{Binding PreçoDeVenda.Text, FallbackValue='Preço de compra'}"
+                       FontSize="Small"
+                       Margin="10,0,0,0" />
+                        <Label Text="{Binding PreçoDeVenda.Description, FallbackValue='R$'}" 
+                       FontSize="Small"
+                       Margin="10,0,0,0"/>
+                    </StackLayout>
+                    <Editor Text="{Binding PreçoDeVenda.Value, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}" 
+                        FontSize="Small" 
+                        Keyboard="Numeric"
+                        />
+
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="{Binding DebitoICMS.Text}"
+                       FontSize="Small"
+                       Margin="10,0,0,0" />
+                        <Label Text="{Binding DebitoICMS.DescriptionCalculatedValue}"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                        <Label Text="{Binding DebitoICMS.CalculatedValue}"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                        <Label Text="{Binding DebitoICMS.Description}"
+                       FontSize="Small"
+                       Margin="10,0,0,0"/>
+                    </StackLayout>
+                    <Editor Text="{Binding DebitoICMS.Value, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}" 
+                        FontSize="Small" 
+                        Keyboard="Numeric"
+                        />
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="{Binding DebitoPISCofins.Text}"
+                       FontSize="Small"
+                       Margin="10,0,0,0" />
+                        <Label Text="{Binding DebitoPISCofins.DescriptionCalculatedValue}"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                        <Label Text="{Binding DebitoPISCofins.CalculatedValue}"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                        <Label Text="{Binding DebitoPISCofins.Description}"
+                       FontSize="Small"
+                       Margin="10,0,0,0"/>
+                    </StackLayout>
+                    <Editor Text="{Binding DebitoPISCofins.Value, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}" 
+                        FontSize="Small" 
+                        Keyboard="Numeric"
+                        />
+                </StackLayout>
+            </ScrollView>
+            <StackLayout Orientation="Horizontal" >
+                <Label Text="{Binding LucroBruto.Text}"
+                       Margin="10,0,0,0" FontAttributes="Bold" />
+                <Label Text="{Binding LucroBruto.DescriptionCalculatedValue}"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                <Label Text="{Binding LucroBruto.CalculatedValue}"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                <Label Text="{Binding LucroBruto.Description}"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+                <Label Text="{Binding LucroBruto.Value}"
+                       FontAttributes="Bold"
+                       Margin="10,0,0,0"/>
+            </StackLayout>
+
+        </StackLayout>
+
     </RefreshView>
 </ContentPage>
