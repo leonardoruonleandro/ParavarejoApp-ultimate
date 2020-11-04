@@ -29,7 +29,7 @@ namespace ParavarejoApp1.ViewModels
             {
                 PreçoDeCompra.Value = value;
                 OnPropertyChanged(nameof(PreçoDeCompraValue));
-                //Services.ParavarejoServices.GetInstance().LucroReal.Calculate(Items.ToList());
+                Services.ParavarejoServices.GetInstance().LucroReal.Calculate(PreçoDeCompra, CreditoICMS, CreditoPISCofins, AcrescimoIPI, PreçoDeCusto, PreçoDeVenda, DebitoICMS, DebitoPISCofins, LucroBruto);
             }
         }
         public Item CreditoICMS { get; set; }
@@ -41,7 +41,7 @@ namespace ParavarejoApp1.ViewModels
             {
                 CreditoICMS.Value = value;
                 OnPropertyChanged(nameof(CreditoICMSValue));
-                //Services.ParavarejoServices.GetInstance().LucroReal.Calculate(Items.ToList());
+                Services.ParavarejoServices.GetInstance().LucroReal.Calculate(PreçoDeCompra, CreditoICMS, CreditoPISCofins, AcrescimoIPI, PreçoDeCusto, PreçoDeVenda, DebitoICMS, DebitoPISCofins, LucroBruto);
             }
         }
 
@@ -54,7 +54,7 @@ namespace ParavarejoApp1.ViewModels
             {
                 CreditoPISCofins.Value = value;
                 OnPropertyChanged(nameof(CreditoPISCofinsValue));
-                //Services.ParavarejoServices.GetInstance().LucroReal.Calculate(Items.ToList());
+                Services.ParavarejoServices.GetInstance().LucroReal.Calculate(PreçoDeCompra, CreditoICMS, CreditoPISCofins, AcrescimoIPI, PreçoDeCusto, PreçoDeVenda, DebitoICMS, DebitoPISCofins, LucroBruto);
             }
         }
 
@@ -67,7 +67,7 @@ namespace ParavarejoApp1.ViewModels
             {
                 AcrescimoIPI.Value = value;
                 OnPropertyChanged(nameof(AcrescimoIPIValue));
-                //Services.ParavarejoServices.GetInstance().LucroReal.Calculate(Items.ToList());
+                Services.ParavarejoServices.GetInstance().LucroReal.Calculate(PreçoDeCompra, CreditoICMS, CreditoPISCofins, AcrescimoIPI, PreçoDeCusto, PreçoDeVenda, DebitoICMS, DebitoPISCofins, LucroBruto);
             }
         }
 
@@ -82,7 +82,7 @@ namespace ParavarejoApp1.ViewModels
             {
                 PreçoDeVenda.Value = value;
                 OnPropertyChanged(nameof(PreçoDeVendaValue));
-                //Services.ParavarejoServices.GetInstance().LucroReal.Calculate(Items.ToList());
+                Services.ParavarejoServices.GetInstance().LucroReal.Calculate(PreçoDeCompra, CreditoICMS, CreditoPISCofins, AcrescimoIPI, PreçoDeCusto, PreçoDeVenda, DebitoICMS, DebitoPISCofins, LucroBruto);
             }
         }
 
@@ -95,7 +95,7 @@ namespace ParavarejoApp1.ViewModels
             {
                 DebitoICMS.Value = value;
                 OnPropertyChanged(nameof(DebitoICMSValue));
-                //Services.ParavarejoServices.GetInstance().LucroReal.Calculate(Items.ToList());
+                Services.ParavarejoServices.GetInstance().LucroReal.Calculate(PreçoDeCompra, CreditoICMS, CreditoPISCofins, AcrescimoIPI, PreçoDeCusto, PreçoDeVenda, DebitoICMS, DebitoPISCofins, LucroBruto);
             }
         }
 
@@ -108,7 +108,7 @@ namespace ParavarejoApp1.ViewModels
             {
                 DebitoPISCofins.Value = value;
                 OnPropertyChanged(nameof(DebitoPISCofinsValue));
-                //Services.ParavarejoServices.GetInstance().LucroReal.Calculate(Items.ToList());
+                Services.ParavarejoServices.GetInstance().LucroReal.Calculate(PreçoDeCompra, CreditoICMS, CreditoPISCofins, AcrescimoIPI, PreçoDeCusto, PreçoDeVenda, DebitoICMS, DebitoPISCofins, LucroBruto);
             }
         }
 

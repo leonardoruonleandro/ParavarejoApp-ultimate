@@ -128,7 +128,7 @@ namespace ParavarejoApp1.ViewModels
 
             var items = await DataStore.GetItemsAsync();
 
-            Services.ParavarejoServices.GetInstance().LucroReal.Calculate(items.ToList());
+            //Services.ParavarejoServices.GetInstance().LucroReal.Calculate(items.ToList());
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");

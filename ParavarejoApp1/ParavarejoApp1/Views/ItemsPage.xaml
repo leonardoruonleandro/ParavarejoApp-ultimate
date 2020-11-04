@@ -32,7 +32,9 @@
                        Margin="10,10,0,0" />
                         <Label Text="{Binding PreçoDeCompra.Description, FallbackValue='R$'}" 
                        FontSize="Small"
-                       Margin="10,10,0,0"/>
+                       Margin="10,10,30,0"
+                       HorizontalOptions="EndAndExpand"
+                               />
                     </StackLayout>
                     <Editor Text="{Binding PreçoDeCompraValue, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}" 
                         FontSize="Small" 
@@ -46,12 +48,14 @@
                        FontSize="Small"
                        FontAttributes="Bold"
                        Margin="10,0,0,0"/>
-                        <Label Text="{Binding CreditoICMS.CalculatedValue}"
+                        <Label Text="{Binding CreditoICMS.CalculatedValue, Converter={StaticResource CurrencyConverter}}"
                        FontSize="Small"
                        FontAttributes="Bold"
                        Margin="10,0,0,0"/>
                         <Label Text="{Binding CreditoICMS.Description}"
-                       Margin="10,0,0,0"/>
+                       Margin="10,0,30,0"
+                       HorizontalOptions="EndAndExpand"
+                        />
                     </StackLayout>
                     <Editor Text="{Binding CreditoICMSValue, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}" 
                         FontSize="Small" 
@@ -64,12 +68,14 @@
                         <Label Text="{Binding CreditoPISCofins.DescriptionCalculatedValue}"
                        FontSize="Small"
                        Margin="10,0,0,0"/>
-                        <Label Text="{Binding CreditoPISCofins.CalculatedValue}"
+                        <Label Text="{Binding CreditoPISCofins.CalculatedValue, Converter={StaticResource CurrencyConverter}}"
                        FontSize="Small"
                        FontAttributes="Bold"
                        Margin="10,0,0,0"/>
                         <Label Text="{Binding CreditoPISCofins.Description}"
-                       Margin="10,0,0,0"/>
+                       Margin="10,0,30,0"
+                       HorizontalOptions="EndAndExpand"
+                       />
                     </StackLayout>
                     <Editor Text="{Binding CreditoPISCofinsValue, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}" 
                         FontSize="Small" 
@@ -84,12 +90,14 @@
                        FontSize="Small"
                        FontAttributes="Bold"
                        Margin="10,0,0,0"/>
-                        <Label Text="{Binding AcrescimoIPI.CalculatedValue}"
+                        <Label Text="{Binding AcrescimoIPI.CalculatedValue, Converter={StaticResource CurrencyConverter}}"
                        FontSize="Small"
                        FontAttributes="Bold"
                        Margin="10,0,0,0"/>
                         <Label Text="{Binding AcrescimoIPI.Description}"
-                       Margin="10,0,0,0"/>
+                       Margin="10,0,30,0"
+                       HorizontalOptions="EndAndExpand"
+                               />
                     </StackLayout>
                     <Editor Text="{Binding AcrescimoIPIValue, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}" 
                         FontSize="Small" 
@@ -103,7 +111,7 @@
                         <Label Text="{Binding PreçoDeCusto.DescriptionCalculatedValue}"
                            FontAttributes="Bold"
                        Margin="10,0,0,0"/>
-                        <Label Text="{Binding PreçoDeCusto.CalculatedValue}"
+                        <Label Text="{Binding PreçoDeCusto.CalculatedValue, Converter={StaticResource CurrencyConverter}}"
                            FontAttributes="Bold"
                        Margin="10,0,0,0"/>
                     </StackLayout>
@@ -113,7 +121,9 @@
                        Margin="10,0,0,0" />
                         <Label Text="{Binding PreçoDeVenda.Description, FallbackValue='R$'}" 
                        FontSize="Small"
-                       Margin="10,0,0,0"/>
+                       Margin="10,0,30,0"
+                       HorizontalOptions="EndAndExpand"
+                        />
                     </StackLayout>
                     <Editor Text="{Binding PreçoDeVendaValue, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}" 
                         FontSize="Small" 
@@ -128,13 +138,15 @@
                        FontSize="Small"
                        FontAttributes="Bold"
                        Margin="10,0,0,0"/>
-                        <Label Text="{Binding DebitoICMS.CalculatedValue}"
+                        <Label Text="{Binding DebitoICMS.CalculatedValue, Converter={StaticResource CurrencyConverter}}"
                        FontSize="Small"
                        FontAttributes="Bold"
                        Margin="10,0,0,0"/>
                         <Label Text="{Binding DebitoICMS.Description}"
                        FontSize="Small"
-                       Margin="10,0,0,0"/>
+                       Margin="10,0,30,0"
+                       HorizontalOptions="EndAndExpand"
+                               />
                     </StackLayout>
                     <Editor Text="{Binding DebitoICMSValue, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}" 
                         FontSize="Small" 
@@ -148,13 +160,15 @@
                        FontSize="Small"
                        FontAttributes="Bold"
                        Margin="10,0,0,0"/>
-                        <Label Text="{Binding DebitoPISCofins.CalculatedValue}"
+                        <Label Text="{Binding DebitoPISCofins.CalculatedValue, Converter={StaticResource CurrencyConverter}}"
                        FontSize="Small"
                        FontAttributes="Bold"
                        Margin="10,0,0,0"/>
                         <Label Text="{Binding DebitoPISCofins.Description}"
                        FontSize="Small"
-                       Margin="10,0,0,0"/>
+                       Margin="10,0,30,0"
+                       HorizontalOptions="EndAndExpand"
+                               />
                     </StackLayout>
                     <Editor Text="{Binding DebitoPISCofinsValue, Mode=TwoWay, Converter={StaticResource CurrencyConverter}}" 
                         FontSize="Small" 
@@ -162,21 +176,32 @@
                         />
                 </StackLayout>
             </ScrollView>
-            <StackLayout Orientation="Horizontal" >
+            <StackLayout Orientation="Horizontal" BackgroundColor="#D5E9DD">
                 <Label Text="{Binding LucroBruto.Text}"
-                       Margin="10,0,0,0" FontAttributes="Bold" />
+                       Margin="10,5,10,5" FontAttributes="Bold"
+                       FontSize="Body"
+                       />
                 <Label Text="{Binding LucroBruto.DescriptionCalculatedValue}"
                        FontAttributes="Bold"
-                       Margin="10,0,0,0"/>
-                <Label Text="{Binding LucroBruto.CalculatedValue}"
+                       Margin="10,5,5,5"
+                       FontSize="Body"
+                       />
+                <Label Text="{Binding LucroBruto.CalculatedValue, Converter={StaticResource CurrencyConverter}}"
                        FontAttributes="Bold"
-                       Margin="10,0,0,0"/>
+                       Margin="0,5,10,5"
+                       FontSize="Body"
+                       />
+                
+                <Label Text="{Binding LucroBruto.Value, Converter={StaticResource CurrencyConverter}}"
+                       FontAttributes="Bold"
+                       Margin="20,5,0,5"
+                       FontSize="Body"
+                       />
                 <Label Text="{Binding LucroBruto.Description}"
                        FontAttributes="Bold"
-                       Margin="10,0,0,0"/>
-                <Label Text="{Binding LucroBruto.Value}"
-                       FontAttributes="Bold"
-                       Margin="10,0,0,0"/>
+                       Margin="5,5,10,5"
+                       FontSize="Body"
+                       />
             </StackLayout>
 
         </StackLayout>

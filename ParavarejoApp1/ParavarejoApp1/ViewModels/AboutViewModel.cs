@@ -9,7 +9,7 @@ namespace ParavarejoApp1.ViewModels
     {
         public AboutViewModel()
         {
-            Title = "About";
+            Title = "Contato";
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamain-quickstart"));
         }
 
